@@ -1,4 +1,4 @@
-# Hive
+# Swarm demo(restore [Hive](https://github.com/bschaeffer) repo)
 
 Example using [swarm][] to distribute processes across nodes with failover
 monitoring.
