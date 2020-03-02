@@ -11,7 +11,11 @@ defmodule Hive.Worker do
   end
 
   def register(name) do
-    {:ok, _pid} = start_link(name)
+    if System.get_env("GO") do
+      {:ok, _pid} = start_link(name)
+    else
+      {:error, :wrong_role}
+    end
   end
 
   def start_link(name) do

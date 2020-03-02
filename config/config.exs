@@ -3,7 +3,7 @@
 use Mix.Config
 
 config :hive,
-  workers: 20,
+  workers: 1,
   start_delay: 7_000,
   kill_delay: 4_000
 

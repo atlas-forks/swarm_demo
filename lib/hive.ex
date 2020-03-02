@@ -9,10 +9,11 @@ defmodule Hive do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+
     # Define workers and child supervisors to be supervised
     children = [
-      worker(Hive.Registry, []),
-      worker(Hive.Chaos, [])
+      worker(Hive.Registry, [])
+      # worker(Hive.Chaos, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

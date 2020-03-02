@@ -29,8 +29,8 @@ defmodule Leader.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:libcluster, ">= 0.0.0"},
-      {:swarm, ">= 0.0.0"}
+      {:libcluster, "3.2.0"},
+      {:swarm, "3.4.0"}
     ]
   end
 end

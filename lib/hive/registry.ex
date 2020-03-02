@@ -4,6 +4,13 @@ defmodule Hive.Registry do
 
   @name __MODULE__
 
+  # Hive.Registry.register(:worker_1)
+
+  def connect_nodes do
+    ["a", "b", "c"]
+    |> Enum.map(& Node.connect(:"#{&1}@127.0.0.1"))
+  end
+
   def start_link do
     GenServer.start_link(__MODULE__, [], name: @name)
   end
@@ -45,7 +52,7 @@ defmodule Hive.Registry do
     total = Swarm.registered() |> Enum.count()
     local = state |>  Enum.count()
     Logger.debug("[Registry] Totals:  Swarm/#{total} Local/#{local}")
-    Process.send_after(self(), :log_state, 500)
+    Process.send_after(self(), :log_state, 5_000)
     {:noreply, state}
   end
 
