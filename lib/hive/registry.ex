@@ -6,11 +6,6 @@ defmodule Hive.Registry do
 
   # Hive.Registry.register(:worker_1)
 
-  def connect_nodes do
-    ["a", "b", "c"]
-    |> Enum.map(& Node.connect(:"#{&1}@127.0.0.1"))
-  end
-
   def start_link do
     GenServer.start_link(__MODULE__, [], name: @name)
   end
@@ -43,7 +38,7 @@ defmodule Hive.Registry do
       {:already_registered, pid} ->
         {:reply, {:ok, pid}, state}
       {:error, reason} ->
-        Logger.error("[Registry] error starting #{name} - #{inspect(reason)}")
+        # Logger.error("[Registry] error starting #{name} - #{inspect(reason)}")
         {:reply, {:error, reason}, state}
     end
   end
@@ -75,7 +70,7 @@ defmodule Hive.Registry do
   end
 
   def start_via_swarm(name, reason \\ "starting") do
-    Logger.debug("[Registry] #{reason} #{name}")
+    # Logger.debug("[Registry] #{reason} #{name}")
     Swarm.register_name(name, Hive.Worker, :register, [name])
   end
 end

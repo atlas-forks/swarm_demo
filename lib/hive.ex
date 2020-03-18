@@ -24,4 +24,23 @@ defmodule Hive do
 
   def pg2_group, do: @pg2_group
   def random_worker, do: :"worker_#{:rand.uniform(@workers)}"
+
+  def connect_nodes do
+    ["a", "b", "c"]
+    |> Enum.map(& Node.connect(:"#{&1}@127.0.0.1"))
+  end
 end
+
+#####
+
+# Task.async(fn ->
+#   Node.spawn(:"b@127.0.0.1", fn -> System.get_env("ROLE") end)
+# end) |> Task.await()
+
+# Node.spawn_link(:"b@127.0.0.1", fn ->
+#   receive do
+#     {:ping, client} ->
+#       role = System.get_env("ROLE")
+#       send client, role
+#   end
+# end)

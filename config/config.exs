@@ -7,6 +7,9 @@ config :hive,
   start_delay: 7_000,
   kill_delay: 4_000
 
+config :swarm,
+  distribution_strategy: Hive.Distribution.LabledRing
+
 config :libcluster,
   topologies: [
     hive: [
